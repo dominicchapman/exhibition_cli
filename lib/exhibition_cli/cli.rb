@@ -10,6 +10,9 @@ class ExhibitionCli::Cli
   def list_exhibitions
     puts "Current exhibitions:"
     @exhibitions = ExhibitionCli::Exhibition.all
+    @exhibitions.each.with_index(1) do |exhibition, i|
+      puts "#{i}. #{exhibition}"
+    end
   end
 
   def menu
@@ -17,12 +20,10 @@ class ExhibitionCli::Cli
     while choice != 'exit'
       puts "Learn more about an exhibition by typing its number, list all exhibitions with list, or type exit to finish."
       choice = gets.strip.downcase
-      case choice
-      when "1"
-        puts "More info on Items: Is Fa..."
-      when "2"
-        puts "More info on Louise Bourg..."
-      when "list"
+
+      if choice.to_i > 0
+        puts @exhibitions[choice.to_i - 1]
+      elsif choice == 'list'
         list_exhibitions
       else
         "Hmm, can't find that. Type list or exit."

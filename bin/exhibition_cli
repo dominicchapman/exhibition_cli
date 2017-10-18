@@ -1,7 +1,8 @@
 #!/usr/bin/env ruby
 
 # Load environment
-require './lib/exhibition_cli'
+require "bundler/setup"
+require "exhibition_cli"
 
 ExhibitionCli::Cli.new.call
 
