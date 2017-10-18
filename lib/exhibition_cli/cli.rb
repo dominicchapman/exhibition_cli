@@ -11,7 +11,7 @@ class ExhibitionCli::Cli
     puts "Current exhibitions:"
     @exhibitions = ExhibitionCli::Exhibition.all
     @exhibitions.each.with_index(1) do |exhibition, i|
-      puts "#{i}. #{exhibition}"
+      puts "#{i}. #{exhibition.name}"
     end
   end
 
@@ -22,7 +22,8 @@ class ExhibitionCli::Cli
       choice = gets.strip.downcase
 
       if choice.to_i > 0
-        puts @exhibitions[choice.to_i - 1]
+        exhibition = @exhibitions[choice.to_i - 1]
+        puts "#{exhibition.name} \n#{exhibition.url}"
       elsif choice == 'list'
         list_exhibitions
       else
