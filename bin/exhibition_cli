@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+# Load environment
+require './lib/exhibition_cli'
+
+ExhibitionCli::Cli.new.call
+

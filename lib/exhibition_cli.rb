@@ -1,5 +1,2 @@
-require "exhibition_cli/version"
-
-module ExhibitionCli
-  # Your code goes here...
-end
+require_relative './exhibition_cli/version'
+require_relative './exhibition_cli/cli'
