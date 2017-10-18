@@ -16,3 +16,10 @@
     
 
 
+What does an exhibition have?
+
+Name
+Duration
+Location
+URL
+Detail

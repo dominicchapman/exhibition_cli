@@ -9,11 +9,7 @@ class ExhibitionCli::Cli
 
   def list_exhibitions
     puts "Current exhibitions:"
-    puts <<~HEREDOC
-      1. Items: Is Fashion Modern?
-      2. Louise Bourgeois: An Unfolding Portrait
-      ...
-    HEREDOC
+    @exhibitions = ExhibitionCli::Exhibition.all
   end
 
   def menu
