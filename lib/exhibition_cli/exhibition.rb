@@ -9,18 +9,19 @@ class ExhibitionCli::Exhibition
   def self.scrape_exhibitions
     exhibitions = []
 
-    # exhibition_1 = self.new
-    # exhibition_1.name = 'Items: Is Fashion Modern?'
-    # exhibition_1.duration = 'Through January 28, 2018'
-    # exhibition_1.url = 'https://www.moma.org/calendar/exhibitions/1638?locale=en'
+    moma = 'https://www.moma.org'
 
-    # exhibition_2 = self.new
-    # exhibition_2.name = 'Louise Bourgeois: An Unfolding Portrait'
-    # exhibition_2.duration = 'Through January 28, 2018'
-    # exhibition_2.url = 'https://www.moma.org/calendar/exhibitions/3661?locale=en'
+    doc = Nokogiri::HTML(open(moma + '/calendar/exhibitions'))
 
-    # [exhibition_1, exhibition_2]
-
+    doc.css('.calendar-tile-list__section-featured').each do |exhibition_item|
+      exhibition_item.css('.calendar-tile a').each do |exhibition_link|
+        exhibition = self.new
+        exhibition.name = exhibition_link.css('h3.calendar-tile__title').text.strip
+        exhibition.url  = moma + "#{exhibition_link.attr('href')}"
+        exhibitions << exhibition
+      end
+    end
+    
     exhibitions
   end
 
